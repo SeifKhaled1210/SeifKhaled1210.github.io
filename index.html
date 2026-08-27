@@ -190,6 +190,11 @@ footer{padding:28px 0 40px;font-family:var(--mono);font-size:12.5px;color:var(--
 <style>
 /* additions for v2 */
 .demos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.demos.two{grid-template-columns:repeat(2,1fr)}
+.demos .live{border-color:var(--green)}
+.demos .live .foot b{color:var(--green)}
+.subhead{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:0 0 12px}
+.subhead+.demos{margin-bottom:28px}
 .demo{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s ease,transform .15s ease;text-decoration:none}
 .demo:hover{border-color:var(--plum);transform:translateY(-2px)}
 .demo .shot{aspect-ratio:16/10;background:#EDF0ED;overflow:hidden;border-bottom:1px solid var(--line)}
@@ -356,10 +361,22 @@ details.modlist[open]>summary{border-bottom:1px solid var(--line)}
     <div class="sec-head rv">
       <div>
         <div class="eyebrow">Web</div>
-        <h2 style="margin-top:10px">Landing pages built to convert, not just to look nice.</h2>
+        <h2 style="margin-top:10px">Live client work, and pages built to convert.</h2>
       </div>
-      <p>Three concept pages, each a different product and a different visual language. All hand-written HTML/CSS, responsive, no framework. Click any to open the live page.</p>
+      <p>The two systems Golden Care runs on day to day — the storefront customers see and the back office behind it — followed by three concept landing pages in three different visual languages. Click any card to open it.</p>
     </div>
+    <p class="subhead rv">Live · Golden Care</p>
+    <div class="demos two rv">
+      <a class="demo live" href="https://goldencaresa.net/" target="_blank" rel="noopener">
+        <div class="shot"><img src="assets/gc-store.jpg" alt="goldencaresa.net — Golden Care online store" loading="lazy"></div>
+        <div class="body"><h3>goldencaresa.net — online store</h3><p>Bilingual Arabic/English Salla storefront for a Riyadh cosmetics chain: eight categories, offers, FAQ, WhatsApp support, and a product-content pipeline feeding 12,700 SKUs with images, brands and three-level classification straight from the ERP.</p><div class="foot"><span>E-commerce · Salla · AR/EN</span><b>Visit store ↗</b></div></div>
+      </a>
+      <a class="demo live" href="https://odoo.goldencaresa.net/" target="_blank" rel="noopener">
+        <div class="shot"><img src="assets/gc-home.jpg" alt="odoo.goldencaresa.net — Odoo 18 back office with custom apps" loading="lazy" style="object-position:center"></div>
+        <div class="body"><h3>odoo.goldencaresa.net — ERP &amp; POS</h3><p>Odoo 18 Community with 30+ custom apps: Salla Connector, Price Monitor, Full Reports, Expiry Tracking, Cycle Count, Audit, Sales Target and more. Runs the stores, the POS network and the online shop from one place.</p><div class="foot"><span>ERP · Odoo 18 · 30+ modules</span><b>Open login ↗</b></div></div>
+      </a>
+    </div>
+    <p class="subhead rv">Concept landing pages</p>
     <div class="demos rv">
       <a class="demo" href="demos/lumen-analytics.html" target="_blank" rel="noopener">
         <div class="shot"><img src="assets/lumen-analytics.jpg" alt="Lumen analytics landing page" loading="lazy"></div>
@@ -759,7 +776,7 @@ void Tick(float dt) {
 
   <footer>
     <span>© 2026 Seif Khaled Mohamed</span>
-    <span>Built by hand · no framework · v2.2.0 · <a href="https://github.com/SeifKhaled1210/cv" style="color:inherit">source</a></span>
+    <span>Built by hand · no framework · v2.2.1 · <a href="https://github.com/SeifKhaled1210/cv" style="color:inherit">source</a></span>
   </footer>
 </main>
 
