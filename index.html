@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seif Khaled Mohamed — Full-stack developer (Python, Web, C++)</title>
+<meta name="description" content="Seif Khaled Mohamed. Full-stack developer in Cairo: web apps and landing pages, Python back ends and ERP integrations, C++ game-server fixes.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://seifkhaled1210.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Seif Khaled Mohamed — Full-stack developer (Python, Web, C++)">
+<meta property="og:description" content="Web apps and landing pages, Python back ends and ERP integrations, C++ game-server fixes. Golden Care · Sailor Online · Old Skull Games.">
+<meta property="og:url" content="https://seifkhaled1210.github.io/">
+<meta property="og:image" content="https://seifkhaled1210.github.io/assets/og-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#141F1B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F4F1;
+  --surface:#FFFFFF;
+  --ink:#141F1B;
+  --ink-2:#3C4A45;
+  --muted:#6E7C76;
+  --line:#D9DED9;
+  --plum:#6A3C60;
+  --plum-soft:#EFE4EC;
+  --green:#1E7A58;
+  --green-soft:#DFF0E7;
+  --amber:#B8760F;
+  --amber-soft:#F8ECD3;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --body:'Instrument Sans',system-ui,sans-serif;
+  --radius:10px;
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--plum);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.05;letter-spacing:-0.02em}
+h2{font-size:clamp(30px,4.2vw,44px);font-weight:800}
+h3{font-size:21px;font-weight:600;letter-spacing:-0.01em}
+p{margin:0}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--plum);font-weight:600}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(242,244,241,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--mono);font-weight:600;font-size:14px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px var(--green-soft)}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav li a{font-size:14.5px;font-weight:500;text-decoration:none;color:var(--ink-2)}
+.nav li a:hover{color:var(--plum)}
+.nav .cta{background:var(--ink);color:#fff;padding:8px 14px;border-radius:999px;font-size:13.5px;font-weight:600;text-decoration:none}
+@media(max-width:760px){.nav ul{display:none}}
+
+/* hero */
+.hero{padding:72px 0 56px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(38px,5.6vw,66px);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--plum)}
+.hero .lede{margin-top:22px;font-size:19px;color:var(--ink-2);max-width:52ch}
+.hero .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px 18px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.hero .meta span::before{content:"·";margin-right:18px;color:var(--line)}
+.hero .meta span:first-child::before{content:none}
+.hero .actions{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px;border:1.5px solid var(--ink);transition:transform .15s ease,background .15s ease}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.primary:hover{background:var(--plum);border-color:var(--plum);transform:translateY(-1px)}
+.btn.ghost{background:transparent}
+.btn.ghost:hover{background:#fff}
+
+/* manifest block — the signature */
+.manifest{background:var(--ink);color:#DCE5E0;border-radius:14px;padding:22px 24px;font-family:var(--mono);font-size:13.5px;line-height:1.7;box-shadow:0 30px 60px -30px rgba(20,31,27,.5);position:relative;overflow:hidden}
+.manifest .bar{display:flex;gap:6px;margin-bottom:14px}
+.manifest .bar i{width:10px;height:10px;border-radius:50%;background:#3A4944;display:block}
+.manifest .bar i:first-child{background:#C25B4D}
+.manifest .bar i:nth-child(2){background:#D8A23A}
+.manifest .bar i:nth-child(3){background:#3F9C6F}
+.manifest .file{position:absolute;top:20px;right:22px;font-size:11.5px;color:#7F8F88}
+.manifest .k{color:#C9A3C0}
+.manifest .s{color:#9FD5B9}
+.manifest .n{color:#F0C36B}
+.manifest .c{color:#7F8F88}
+.manifest pre{margin:0;white-space:pre-wrap;word-break:break-word;font-size:12.5px}
+.manifest .cursor{display:inline-block;width:8px;height:15px;background:#9FD5B9;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.manifest .cursor{animation:none}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:48px}}
+
+/* proof strip */
+.proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
+.proof .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.proof .wrap > div{padding:22px 0;border-left:1px solid var(--line);padding-left:22px;min-width:0}
+.proof .wrap > div:first-child{border-left:0;padding-left:0}
+.proof b{font-family:var(--display);font-size:30px;font-weight:800;display:block;letter-spacing:-.02em}
+.proof small{font-size:13.5px;color:var(--muted)}
+@media(max-width:760px){.proof .wrap{grid-template-columns:1fr 1fr}.proof .wrap > div:nth-child(3){border-left:0;padding-left:0}.proof .wrap > div{padding:16px 0 16px 16px}}
+
+/* sections */
+section{padding:84px 0}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:40px}
+.sec-head p{color:var(--ink-2);font-size:17px;max-width:54ch}
+@media(max-width:800px){.sec-head{grid-template-columns:1fr;gap:14px}}
+
+/* case studies */
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.case{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:14px;transition:border-color .15s ease,transform .15s ease}
+.case:hover{border-color:var(--plum);transform:translateY(-2px)}
+.case.wide{grid-column:span 2}
+.case .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.tag{font-family:var(--mono);font-size:11.5px;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.tag.ver{background:var(--plum-soft);color:var(--plum)}
+.tag.cat{background:#EDF0ED;color:var(--ink-2)}
+.tag.ok{background:var(--green-soft);color:var(--green)}
+.tag.warn{background:var(--amber-soft);color:var(--amber)}
+.case .module{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.case p{color:var(--ink-2);font-size:15.5px}
+.case ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:15px;display:grid;gap:5px}
+.case .result{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;font-size:14.5px}
+.case .result b{font-family:var(--display);font-size:22px;color:var(--green);letter-spacing:-.02em;white-space:nowrap}
+.pf{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pf h4{margin:0 0 6px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+@media(max-width:800px){.cases{grid-template-columns:minmax(0,1fr)}.case.wide{grid-column:span 1}.pf{grid-template-columns:1fr}.case .top{flex-wrap:wrap}}
+
+/* module list */
+.modlist{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden}
+.modgroup{border-top:1px solid var(--line)}
+.modgroup:first-child{border-top:0}
+.modgroup header{display:flex;align-items:center;gap:12px;padding:14px 20px;background:#F8F9F7;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
+.modgroup header span{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:none;margin-left:auto}
+.mod{display:grid;grid-template-columns:230px 1fr auto;gap:16px;padding:14px 20px;border-top:1px solid #EEF0EE;align-items:baseline;font-size:15px}
+.mod:first-of-type{border-top:0}
+.mod .name{font-weight:600}
+.mod .name small{display:block;font-family:var(--mono);font-size:11.5px;color:var(--muted);font-weight:400;margin-top:2px}
+.mod .desc{color:var(--ink-2)}
+@media(max-width:760px){.mod{grid-template-columns:1fr;gap:6px}.mod .tag{justify-self:start}}
+
+/* two-col bands */
+.band{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.card h3{margin-bottom:10px}
+.card p{color:var(--ink-2);font-size:15.5px}
+.card ul{margin:14px 0 0;padding-left:18px;color:var(--ink-2);font-size:15px;display:grid;gap:6px}
+.card .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14.5px;margin-top:14px}
+.card .kv dt{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:3px}
+.card .kv dd{margin:0}
+@media(max-width:800px){.band{grid-template-columns:1fr}}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.skill h3{font-size:15px;font-family:var(--mono);font-weight:600;letter-spacing:.02em;color:var(--plum);margin-bottom:12px}
+.skill ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.skill li{border:1px solid var(--line);background:var(--surface);padding:6px 11px;border-radius:999px;font-size:14px}
+@media(max-width:760px){.skills{grid-template-columns:1fr}}
+
+/* timeline */
+.timeline{display:grid;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.tl{position:relative;padding:0 0 32px 28px}
+.tl::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--plum)}
+.tl .when{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.tl h3{margin:4px 0 6px}
+.tl p{color:var(--ink-2);font-size:15.5px;max-width:62ch}
+
+/* contact */
+.contact{background:var(--ink);color:#E6ECE8;border-radius:18px;padding:52px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.contact h2{color:#fff}
+.contact p{color:#B5C2BB;margin-top:14px;max-width:48ch}
+.contact .links{display:grid;gap:12px;font-family:var(--mono);font-size:15px}
+.contact .links a{color:#fff;text-decoration:none;display:flex;justify-content:space-between;padding:14px 18px;border:1px solid #3A4944;border-radius:10px;transition:background .15s ease}
+.contact .links a:hover{background:#243430}
+.contact .links a span{color:#7F8F88;font-size:12.5px}
+@media(max-width:800px){.contact{grid-template-columns:1fr;padding:32px}}
+
+footer{padding:28px 0 40px;font-family:var(--mono);font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<style>
+/* additions for v2 */
+.demos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.demo{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s ease,transform .15s ease;text-decoration:none}
+.demo:hover{border-color:var(--plum);transform:translateY(-2px)}
+.demo .shot{aspect-ratio:16/10;background:#EDF0ED;overflow:hidden;border-bottom:1px solid var(--line)}
+.demo .shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.demo .body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.demo h3{font-size:18px}
+.demo p{font-size:14.5px;color:var(--ink-2)}
+.demo .foot{margin-top:auto;padding-top:10px;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.demo .foot b{color:var(--plum);font-weight:600}
+@media(max-width:900px){.demos{grid-template-columns:minmax(0,1fr)}}
+
+.game{display:grid;min-width:0;grid-template-columns:1.15fr .85fr;gap:20px;align-items:stretch}
+.game .frame{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#0D1117;aspect-ratio:16/9;min-width:0;width:100%}
+.game iframe{width:100%;height:100%;border:0;display:block}
+@media(max-width:900px){.game{grid-template-columns:minmax(0,1fr)}.game .frame{aspect-ratio:auto;height:360px}}
+
+.fixes{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;margin-top:20px}
+.fix{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:.9fr 1.1fr}
+.fix .txt{padding:24px 26px}
+.fix .txt h3{margin-bottom:8px}
+.fix .txt p{font-size:15px;color:var(--ink-2)}
+.fix .txt .lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 4px}
+.fix pre{margin:0;background:#141F1B;color:#CBD5CF;font-family:var(--mono);font-size:12.5px;line-height:1.6;padding:20px 22px;overflow:auto;height:100%}
+.fix pre .del{display:inline-block;width:calc(100% + 44px);background:rgba(220,80,70,.18);color:#F2A79F;margin:0 -22px;padding:0 22px}
+.fix pre .add{display:inline-block;width:calc(100% + 44px);background:rgba(46,160,110,.18);color:#9FD5B9;margin:0 -22px;padding:0 22px}
+.fix pre .cm{color:#7F8F88}
+@media(max-width:900px){.fix{grid-template-columns:1fr}}
+
+.clients{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.client{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:8px}
+.client .who{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--plum);font-weight:600}
+.client h3{font-size:20px}
+.client .role{font-size:14px;color:var(--muted);font-weight:500}
+.client p{font-size:14.5px;color:var(--ink-2)}
+.client ul{margin:4px 0 0;padding-left:18px;font-size:14px;color:var(--ink-2);display:grid;gap:4px}
+.client .jump{margin-top:auto;padding-top:12px;font-size:13.5px;font-weight:600;color:var(--plum);text-decoration:none}
+.client.more{background:transparent;border-style:dashed;justify-content:center}
+@media(max-width:900px){.clients{grid-template-columns:1fr}}
+.fix pre .kw{color:#C9A3C0}
+details.modlist{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+details.modlist>summary{cursor:pointer;list-style:none;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;font-weight:600}
+details.modlist>summary::-webkit-details-marker{display:none}
+details.modlist>summary span{font-family:var(--mono);font-size:12.5px;color:var(--plum);font-weight:600}
+details.modlist[open]>summary{border-bottom:1px solid var(--line)}
+</style>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="dot"></span>seif_khaled</a>
+    <ul>
+      <li><a href="#clients">Clients</a></li>
+      <li><a href="#web">Web</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#erp">ERP & integrations</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a class="cta" href="#contact">Get in touch</a>
+  </div>
+</nav>
+
+<main id="top" class="wrap">
+
+  <section class="hero" style="padding-bottom:64px">
+    <div>
+      <div class="eyebrow">Python · Web · C++ · Cairo, Egypt</div>
+      <h1 style="margin-top:14px">Software that has to work <em>on Monday morning.</em></h1>
+      <p class="lede">Seif Khaled Mohamed — full-stack developer. Four years shipping web apps and landing pages, Python back ends and ERP integrations, and C++ fixes on a live MMORPG server — for a retail chain, a game studio, a private-server project and a long list of individual clients. I'm happiest where a bug is costing someone money and nobody else wants to read the code.</p>
+      <div class="meta">
+        <span>Python / JavaScript / C++</span><span>HTML / CSS / XML</span><span>REST APIs & webhooks</span><span>PostgreSQL</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="#web">See the work</a>
+        <a class="btn ghost" href="mailto:seifxat@gmail.com">seifxat@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="manifest" aria-label="Developer manifest">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <span class="file">seif.py</span>
+<pre id="manifest"></pre>
+    </div>
+  </section>
+</main>
+
+<div class="proof">
+  <div class="wrap">
+    <div><b>4 yrs</b><small>shipping web, Python and integration work</small></div>
+    <div><b>30+</b><small>production modules built or maintained for Golden Care</small></div>
+    <div><b>4</b><small>languages I debug in: Python, JavaScript, C++, C#</small></div>
+    <div><b>AR / EN</b><small>bilingual interfaces, RTL layouts, Arabic reports</small></div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ===================== CLIENTS ===================== -->
+  <section id="clients">
+    <div class="sec-head rv">
+      <div>
+        <div class="eyebrow">Clients &amp; teams</div>
+        <h2 style="margin-top:10px">Who I've built for.</h2>
+      </div>
+      <p>Three very different companies — a retail chain, an MMORPG project and an indie game studio — plus years of freelance work for individuals and small businesses.</p>
+    </div>
+    <div class="clients rv">
+      <div class="client">
+        <div class="who">Retail · Riyadh, Saudi Arabia</div>
+        <h3>Golden Care</h3>
+        <div class="role">Lead ERP &amp; integrations developer</div>
+        <p>Cosmetics retail chain: multiple stores, a POS network and a Salla online shop on one Odoo 18 Community instance. I own the entire custom layer.</p>
+        <ul><li>30+ modules built or maintained</li><li>Two-way e-commerce sync for 12,700 SKUs</li><li>POS performance, loyalty, audit, reporting</li></ul>
+        <a class="jump" href="#erp">See the ERP work →</a>
+      </div>
+      <div class="client">
+        <div class="who">MMORPG private server</div>
+        <h3>Sailor Online</h3>
+        <div class="role">Server developer</div>
+        <p>A Silk-Road-style MMORPG project with thousands of active players. Worked on the C++ game server and supporting services while the server was live.</p>
+        <ul><li>Crash fixes and exploit patching on the live gameserver</li><li>Packet validation, cooldown and trade-logic hardening</li><li>Events, database fixes, launcher and web-side support</li></ul>
+        <a class="jump" href="#games">See the fixes →</a>
+      </div>
+      <div class="client">
+        <div class="who">Game studio · France</div>
+        <h3>Old Skull Games</h3>
+        <div class="role">Bug fixing, mobile titles</div>
+        <p>Independent studio behind mobile and PC games, including co-developments with major publishers. Contributed bug fixes across their mobile titles.</p>
+        <ul><li>Reproducing and fixing player-reported bugs</li><li>Save/progression and performance issues on low-end devices</li><li>Unity / C# codebase</li></ul>
+        <a class="jump" href="#games">See the fixes →</a>
+      </div>
+    </div>
+    <div class="band rv" style="margin-top:20px">
+      <div class="card">
+        <h3>Individuals &amp; small businesses</h3>
+        <p>Before and alongside the companies above: landing pages, storefront setups, small Python tools and one-off fixes for freelance clients — shop owners, streamers, students and startups. Most came by referral; most came back.</p>
+      </div>
+      <div class="card">
+        <h3>What that mix taught me</h3>
+        <ul style="margin-top:0">
+          <li>A retail chain and a game server break in the same ways: unvalidated input, untested edge cases, unbounded loops</li>
+          <li>Ship the smallest fix that can be explained to a non-developer</li>
+          <li>Live systems don't get restarted for fun — patch around vendor code, not through it</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WEB ===================== -->
+  <section id="web" style="padding-top:0">
+    <div class="sec-head rv">
+      <div>
+        <div class="eyebrow">Web</div>
+        <h2 style="margin-top:10px">Landing pages built to convert, not just to look nice.</h2>
+      </div>
+      <p>Three concept pages, each a different product and a different visual language. All hand-written HTML/CSS, responsive, no framework. Click any to open the live page.</p>
+    </div>
+    <div class="demos rv">
+      <a class="demo" href="demos/lumen-analytics.html" target="_blank" rel="noopener">
+        <div class="shot"><img src="assets/lumen-analytics.jpg" alt="Lumen analytics landing page" loading="lazy"></div>
+        <div class="body"><h3>Lumen — product analytics</h3><p>SaaS landing page with a live-feeling dashboard hero, three-tier pricing and a quote block. Dark UI, gradient accents, Space Grotesk.</p><div class="foot"><span>SaaS · dark theme</span><b>Open demo →</b></div></div>
+      </a>
+      <a class="demo" href="demos/ashkar-online.html" target="_blank" rel="noopener">
+        <div class="shot"><img src="assets/ashkar-online.jpg" alt="Ashkar Online MMORPG server landing page" loading="lazy"></div>
+        <div class="body"><h3>Ashkar — MMORPG server</h3><p>Landing page for a private game server: live server-status pill, download CTA, class cards, weekly event schedule and a patch-notes panel. Gold-on-black, Cinzel display.</p><div class="foot"><span>Gaming · dark theme</span><b>Open demo →</b></div></div>
+      </a>
+      <a class="demo" href="demos/stride-app.html" target="_blank" rel="noopener">
+        <div class="shot"><img src="assets/stride-app.jpg" alt="Stride fitness app landing page" loading="lazy"></div>
+        <div class="body"><h3>Stride — running app</h3><p>Mobile-app landing with a CSS-only phone mockup, marquee ticker and a bold high-contrast type system. Built for a single call to action.</p><div class="foot"><span>Mobile app · bold</span><b>Open demo →</b></div></div>
+      </a>
+    </div>
+    <div class="band rv" style="margin-top:20px">
+      <div class="card">
+        <h3>Client web work</h3>
+        <p>Beyond concept pages: Golden Care's storefront and product-content pipelines for a 12,700-SKU online shop, web-side support for Sailor Online (account and launcher pages), a customer-facing self-order kiosk web app that talks to an ERP over RPC, and OWL/JavaScript components inside back-office systems — drag-and-drop dashboards, browser-side receipt printing, barcode-driven wizards.</p>
+      </div>
+      <div class="card">
+        <h3>How I build pages</h3>
+        <ul style="margin-top:0">
+          <li>One job per page, one primary action, and copy written before layout</li>
+          <li>Real content over lorem ipsum — placeholder text hides layout problems</li>
+          <li>Mobile checked at 390px, keyboard focus visible, reduced-motion respected</li>
+          <li>Ships as plain HTML/CSS unless the project needs more</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GAMES ===================== -->
+  <section id="games" style="padding-top:0">
+    <div class="sec-head rv">
+      <div>
+        <div class="eyebrow">Games</div>
+        <h2 style="margin-top:10px">Game code, from server fixes to a playable demo.</h2>
+      </div>
+      <p>Server-side C++ on Sailor Online, client-side C# for Old Skull Games' mobile titles, and a small canvas game of my own. The fixes below are representative — simplified and stripped of proprietary code — but the shape of each bug is one I've actually shipped a fix for.</p>
+    </div>
+
+    <div class="game rv">
+      <div class="frame"><iframe src="demos/vault-runner.html" title="Vault Runner — playable canvas game"></iframe></div>
+      <div class="card">
+        <h3>Vault Runner</h3>
+        <p>A 60-fps arcade loop in ~150 lines of vanilla JavaScript: delta-time physics with velocity capping, edge-spawning enemies that home on the player, particle bursts, touch and keyboard input, and a difficulty ramp every ten coins.</p>
+        <dl class="kv">
+          <dt>controls</dt><dd>Arrow keys / WASD, or drag on touch</dd>
+          <dt>stack</dt><dd>Canvas 2D, requestAnimationFrame, no libraries</dd>
+          <dt>why</dt><dd>Same fundamentals as a server tick: fixed update, clamped dt, spatial checks</dd>
+        </dl>
+        <p style="margin-top:14px"><a href="demos/vault-runner.html" target="_blank" rel="noopener" style="font-weight:600;color:var(--plum)">Open full-screen →</a></p>
+      </div>
+    </div>
+
+    <div class="sec-head rv" style="margin:56px 0 0"><div><div class="eyebrow">Sailor Online · C++ gameserver</div><h3 style="margin-top:8px;font-size:26px">Server-side fixes on a live MMORPG.</h3></div></div>
+    <div class="fixes rv">
+      <article class="fix">
+        <div class="txt">
+          <span class="tag warn">crash fix</span>
+          <h3 style="margin-top:12px">Unchecked packet length</h3>
+          <p>Players could crash the world server by sending a chat packet whose declared length exceeded the buffer. The handler trusted the client's size field and read past the end.</p>
+          <div class="lbl">Fix</div>
+          <p>Validate the length against what actually arrived before touching the buffer, and drop the session on a malformed packet instead of letting it through.</p>
+        </div>
+<pre><span class="cm">// WorldSession::HandleChatMessage</span>
+void HandleChatMessage(Packet&amp; pkt) {
+    uint32 len = pkt.ReadU32();
+<span class="del">-   std::string msg(pkt.Data(), len);</span>
+<span class="add">+   if (len &gt; pkt.Remaining() || len &gt; MAX_CHAT_LEN) {</span>
+<span class="add">+       LogWarn("bad chat len %u from %s", len, Addr());</span>
+<span class="add">+       KickSession(KICK_MALFORMED);</span>
+<span class="add">+       return;</span>
+<span class="add">+   }</span>
+<span class="add">+   std::string msg(pkt.Data(), len);</span>
+    Broadcast(msg);
+}</pre>
+      </article>
+
+      <article class="fix">
+        <div class="txt">
+          <span class="tag warn">exploit patch</span>
+          <h3 style="margin-top:12px">Client-trusted cooldown</h3>
+          <p>A skill's cooldown was enforced only in the client. A modified client could spam it every tick, one-shotting bosses. The server just checked mana.</p>
+          <div class="lbl">Fix</div>
+          <p>Track the last cast time per skill on the server and reject early casts. Small tolerance for latency so honest players never notice.</p>
+        </div>
+<pre><span class="cm">// Player::TryCastSkill</span>
+bool TryCastSkill(uint32 skillId) {
+    auto&amp; sk = GetSkill(skillId);
+    if (mana &lt; sk.cost) return false;
+<span class="add">+   uint64 now = ServerTime::Ms();</span>
+<span class="add">+   if (now &lt; sk.lastCast + sk.cooldownMs - LATENCY_GRACE_MS)</span>
+<span class="add">+       return false;   <span class="cm">// early: ignore, don't kick</span></span>
+<span class="add">+   sk.lastCast = now;</span>
+    mana -= sk.cost;
+    Execute(sk);
+    return true;
+}</pre>
+      </article>
+
+      <article class="fix">
+        <div class="txt">
+          <span class="tag warn">logic bug</span>
+          <h3 style="margin-top:12px">Iterator invalidation on death</h3>
+          <p>When an AoE killed several mobs at once, some survivors stopped attacking. Killing a mob erased it from the aggro vector while the same loop was iterating it — undefined behaviour that happened to skip the next element.</p>
+          <div class="lbl">Fix</div>
+          <p>Mark dead entities during the loop, then remove them in one pass afterwards with erase–remove.</p>
+        </div>
+<pre><span class="cm">// AggroTable::Tick</span>
+void Tick(float dt) {
+<span class="del">-   for (auto it = targets.begin(); it != targets.end(); ++it) {</span>
+<span class="del">-       it-&gt;Update(dt);</span>
+<span class="del">-       if (it-&gt;IsDead()) targets.erase(it);  <span class="cm">// UB: 'it' now dangling</span></span>
+<span class="del">-   }</span>
+<span class="add">+   for (auto&amp; t : targets)</span>
+<span class="add">+       t.Update(dt);</span>
+<span class="add">+   targets.erase(</span>
+<span class="add">+       std::remove_if(targets.begin(), targets.end(),</span>
+<span class="add">+                      [](const Target&amp; t){ return t.IsDead(); }),</span>
+<span class="add">+       targets.end());</span>
+}</pre>
+      </article>
+    </div>
+
+    <div class="sec-head rv" style="margin:56px 0 0"><div><div class="eyebrow">Old Skull Games · Unity / C#</div><h3 style="margin-top:8px;font-size:26px">Client-side fixes on mobile titles.</h3></div></div>
+    <div class="fixes rv">
+      <article class="fix">
+        <div class="txt">
+          <span class="tag warn">progression bug</span>
+          <h3 style="margin-top:12px">Offline earnings overflow</h3>
+          <p>An idle game computed offline income as <span class="mono">rate × seconds</span> in a 32-bit int. Players who left the app for a few days came back to negative gold — and one-star reviews.</p>
+          <div class="lbl">Fix</div>
+          <p>Compute in double, clamp the offline window to the design cap, and never let a currency go below its previous value.</p>
+        </div>
+<pre><span class="cm">// OfflineProgress.cs</span>
+<span class="kw">public static</span> <span class="kw">long</span> Earned(<span class="kw">long</span> rate, DateTime last, DateTime now) {
+<span class="del">-   int secs = (int)(now - last).TotalSeconds;</span>
+<span class="del">-   return (int)rate * secs;             <span class="cm">// overflows past ~24 h</span></span>
+<span class="add">+   double secs = (now - last).TotalSeconds;</span>
+<span class="add">+   secs = Math.Clamp(secs, 0, MaxOfflineSeconds);   <span class="cm">// design cap: 8 h</span></span>
+<span class="add">+   double earned = rate * secs;</span>
+<span class="add">+   return (<span class="kw">long</span>)Math.Min(earned, <span class="kw">long</span>.MaxValue / 2);</span>
+}</pre>
+      </article>
+
+      <article class="fix">
+        <div class="txt">
+          <span class="tag warn">data loss</span>
+          <h3 style="margin-top:12px">Save corrupted on app kill</h3>
+          <p>Android killed the app mid-write and players lost their progress: the save file was written in place, so a half-written JSON was all that remained on next launch.</p>
+          <div class="lbl">Fix</div>
+          <p>Write to a temp file, flush, then atomically replace the real one. Keep the last good save as a fallback and validate before loading.</p>
+        </div>
+<pre><span class="cm">// SaveSystem.cs</span>
+<span class="kw">void</span> Write(<span class="kw">string</span> json) {
+<span class="del">-   File.WriteAllText(SavePath, json);</span>
+<span class="add">+   <span class="kw">var</span> tmp = SavePath + ".tmp";</span>
+<span class="add">+   File.WriteAllText(tmp, json);</span>
+<span class="add">+   <span class="kw">if</span> (File.Exists(SavePath)) File.Copy(SavePath, SavePath + ".bak", <span class="kw">true</span>);</span>
+<span class="add">+   File.Replace(tmp, SavePath, <span class="kw">null</span>);   <span class="cm">// atomic on the platforms we ship</span></span>
+}
+<span class="kw">string</span> Read() {
+<span class="add">+   <span class="kw">foreach</span> (<span class="kw">var</span> p <span class="kw">in</span> <span class="kw">new</span>[]{ SavePath, SavePath + ".bak" })</span>
+<span class="add">+       <span class="kw">if</span> (TryParse(File.ReadAllText(p), <span class="kw">out</span> <span class="kw">var</span> ok)) <span class="kw">return</span> ok;</span>
+<span class="add">+   <span class="kw">return</span> NewGame();</span>
+}</pre>
+      </article>
+
+      <article class="fix">
+        <div class="txt">
+          <span class="tag warn">performance</span>
+          <h3 style="margin-top:12px">Frame drops from particle spawns</h3>
+          <p>Every coin pickup instantiated a new particle prefab and destroyed it a second later. On low-end Android phones the GC spikes showed up as visible stutter in the busiest screens.</p>
+          <div class="lbl">Fix</div>
+          <p>Pool the effect: pre-warm a handful, reuse, and only grow the pool when it's genuinely empty.</p>
+        </div>
+<pre><span class="cm">// CoinPickup.cs</span>
+<span class="kw">void</span> OnCollected() {
+<span class="del">-   <span class="kw">var</span> fx = Instantiate(sparklePrefab, transform.position, Quaternion.identity);</span>
+<span class="del">-   Destroy(fx, 1f);</span>
+<span class="add">+   <span class="kw">var</span> fx = SparklePool.Get();          <span class="cm">// pre-warmed, 8 instances</span></span>
+<span class="add">+   fx.transform.position = transform.position;</span>
+<span class="add">+   fx.Play();</span>
+<span class="add">+   SparklePool.ReturnAfter(fx, 1f);     <span class="cm">// disables, doesn't destroy</span></span>
+}</pre>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== ERP ===================== -->
+  <section id="erp" style="padding-top:0">
+    <div class="sec-head rv">
+      <div>
+        <div class="eyebrow">ERP & integrations</div>
+        <h2 style="margin-top:10px">Back-office systems Golden Care runs on.</h2>
+      </div>
+      <p>Golden Care is a cosmetics retail chain in Riyadh: multiple stores, a POS network and a Salla online shop on a single Odoo 18 Community instance. I built and maintain the entire custom layer. Versions are real; so were the problems.</p>
+    </div>
+
+    <div class="cases">
+
+      <article class="case wide rv">
+        <div class="top">
+          <div><h3>Two-way e-commerce ↔ ERP sync</h3><div class="module">salla_odoo_connector</div></div>
+          <div style="display:flex;gap:6px"><span class="tag cat">Integration</span><span class="tag ver">18.0.4.5.0</span></div>
+        </div>
+        <div class="pf">
+          <div><h4>Problem</h4><p>The online store (Salla) and the ERP disagreed about products, stock and orders. Off-the-shelf connectors synced one product at a time and took days on a 10,000-item catalogue, with no Arabic/English descriptions or multi-image support.</p></div>
+          <div><h4>What I built</h4>
+            <ul>
+              <li>Two-way sync for products, categories, orders, customers, stock, brands, shipping and payment methods</li>
+              <li>Parallel workers (10–20), 60-products-per-call batching, result caching</li>
+              <li>Webhooks for real-time updates with scheduled jobs as fallback</li>
+              <li>Up to 5 images per product, bilingual HTML descriptions, live monitoring dashboard</li>
+            </ul>
+          </div>
+        </div>
+        <div class="result"><b>60–90 min</b> to sync 10,272 products with images — roughly 8–10× faster than the connector it replaced.</div>
+      </article>
+
+      <article class="case rv">
+        <div class="top"><div><h3>The 20-minute POS freeze</h3><div class="module">pos_loyalty_guard · gc_loyalty_preload</div></div><span class="tag ver">18.0.2.1.0</span></div>
+        <p>Cashiers waited 20–30 minutes for the POS to open, and "free product" rewards crashed the screen. A third-party fast-loading module deferred the catalogue, so loyalty rewards loaded with no products to point at, and the repair routine re-read everything on every boot.</p>
+        <ul>
+          <li>Guard that detects broken reward↔product links and repairs them at the crash site</li>
+          <li>Then the real fix: preload the ~137 loyalty products into the initial payload (about 1% more data)</li>
+          <li>First attempt overrode the wrong method and silently did nothing — traced the MRO and hooked <span class="mono">_load_pos_data</span> after the vendor module</li>
+        </ul>
+        <div class="result"><b>0 repairs</b> at startup; POS opens in seconds, vendor modules untouched.</div>
+      </article>
+
+      <article class="case rv">
+        <div class="top"><div><h3>Universal audit log</h3><div class="module">universal_audit_log</div></div><span class="tag ver">18.0.8.0.0</span></div>
+        <p>Management wanted who-changed-what across every model without per-model configuration. v1 worked but slowed checkout. v8 is the performance rewrite.</p>
+        <ul>
+          <li>Async post-commit writes with chunked batch inserts</li>
+          <li>One row per record, bulk-operation guard, POS hot-path skipping</li>
+          <li>User, IP, browser, OS, device and session captured; indexes 14 → 6; 90-day retention</li>
+        </ul>
+        <div class="result"><b>No checkout slowdown</b> with full history on every model.</div>
+      </article>
+
+      <article class="case rv">
+        <div class="top"><div><h3>Barcode cycle counting</h3><div class="module">inventory_cycle_count</div></div><span class="tag ver">18.0.12.20.0</span></div>
+        <p>Daily shop-floor stock counts with Honeywell handheld scanners, straight into the ERP.</p>
+        <ul>
+          <li>Scan → product, qty, cost, price, image → enter counted qty; confirmed counts adjust stock automatically</li>
+          <li>Sessions, multi-location, multi-company, three-sheet Excel export, rollback wizard</li>
+        </ul>
+        <div class="result"><b>Full audit trail</b> of before/after quantities per count.</div>
+      </article>
+
+      <article class="case rv">
+        <div class="top"><div><h3>Product price monitor</h3><div class="module">product_price_monitor</div></div><span class="tag ver">18.0.3.9.25</span></div>
+        <p>Paste any competitor product URL — Amazon, Noon, any store — and the system scrapes the price on a schedule via JSON-LD, meta tags or CSS selectors.</p>
+        <ul>
+          <li>Full price history with % change, email and in-app alerts</li>
+          <li>Cross-site comparison groups, bulk CSV/Excel import, multi-tab Excel reports</li>
+        </ul>
+        <div class="result"><b>Any website</b> becomes a data source without writing a new scraper.</div>
+      </article>
+
+    </div>
+
+    <details class="modlist rv" style="margin-top:20px">
+      <summary>Full module list — 30+ more, grouped by function <span>expand ↓</span></summary>
+
+      <div class="modgroup">
+        <header>Point of sale <span>8 modules</span></header>
+        <div class="mod"><div class="name">Self-order kiosk<small>golden_care_self_order · 18.0.3.0.2</small></div><div class="desc">Standalone customer-facing web page that talks to POS sessions and orders over RPC. No POS bundle patching, so vendor updates can't break it.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Kiosk print bridge<small>gc_self_order_smartprints_bridge · 18.0.6.0.1</small></div><div class="desc">Prints kiosk receipts to XPrinter / SmartPrints directly from the browser.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">POS Loyalty Hybrid<small>pos_custom_loyalty_hybrid · 18.0.6.3.2</small></div><div class="desc">Custom rule-based point earning that feeds native loyalty cards, so redemption stays 100% native with zero custom POS JavaScript.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">POS Loyalty Popup<small>pos_loyalty_popup · 18.0.1.0.8</small></div><div class="desc">Search a member by name or phone, create one on the spot, attach to the order.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">POS Invoice Speedup<small>pos_invoice_speedup · 18.0.11.0.0</small></div><div class="desc">Skips mail/tracking overhead on POS invoices; prints the PDF in place. v11 removed overrides that silently produced empty PDFs.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">POS Hide Products Grid<small>pos_hide_products_grid · 18.0.1.0.0</small></div><div class="desc">Barcode-only POS: no tiles, no image requests, far fewer DOM nodes.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">POS Enhancements &amp; Branding<small>pos_enhancements · golden_care_pos_branding</small></div><div class="desc">Default customer, auto-print receipts, store branding across the POS.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">POS Fast Loading<small>pos_fast_loading · Webkul</small></div><div class="desc">Third-party deferred loader. Diagnosed and worked around its side effects on loyalty (see case study).</div><span class="tag warn">extended</span></div>
+      </div>
+
+      <div class="modgroup">
+        <header>Inventory &amp; products <span>9 modules</span></header>
+        <div class="mod"><div class="name">Product Expiry Tracker<small>product_expiry_tracker · 18.0.2.2.0</small></div><div class="desc">Classifies every lot as Good / Near expiry / Critical / Expired with configurable windows, colour-coded views, scheduled email reports and per-user access levels.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Product Full Export<small>product_export_full · 18.0.7.4.0</small></div><div class="desc">CSV/XLSX with barcode, brand, three category levels and up to five public image URLs; Arabic-aware name shortening.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Category 3-Level Selector<small>product_category_levels · 18.0.7.8.2</small></div><div class="desc">Bulk import of Main / Family / Sub-family / Brand from Excel.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Product Image URL Import<small>product_image_url_import · 18.0.1.1</small></div><div class="desc">Dynamic URL lines per product; downloads and stores images.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Products Data Export<small>pci_products_data_export · 18.0.1.4.0</small></div><div class="desc">Round-trip export/import of barcode, cost, price and classification.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Price Labels — 8 formats<small>product_price_comparison_v2 · 18.0.10.29.1</small></div><div class="desc">A4 to Dymo to 4×6 stickers with discount badges, barcodes, full Arabic RTL and batch printing from a scanner-driven wizard.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Category User Restriction<small>category_user_restriction · 18.0.1.1.0</small></div><div class="desc">Only selected users may change product categories.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Product Multi Images<small>product_multi_images · Hi Spark</small></div><div class="desc">Five-image product fields; the e-commerce connector maps onto these.</div><span class="tag warn">integrated</span></div>
+        <div class="mod"><div class="name">Product Multiple Barcodes<small>product_multiple_barcodes · VentorTech</small></div><div class="desc">Additional barcodes per product, searchable at POS.</div><span class="tag warn">integrated</span></div>
+      </div>
+
+      <div class="modgroup">
+        <header>Purchasing, receiving &amp; accounting <span>7 modules</span></header>
+        <div class="mod"><div class="name">Stock Receipt Custom Lines<small>stock_receipt_custom_lines · 18.0.6.6.0</small></div><div class="desc">Line numbers, barcodes and totals on POs and receipts; fixes a PO numbering race condition.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Receiving Reports<small>receiving_reports_ce · 18.0.5.0.0</small></div><div class="desc">Receiving history with CSV export and Arabic translation.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Purchase Excel Analysis (bilingual)<small>odoo_purchase_excel_bilingual · 18.0.1.2.0</small></div><div class="desc">The purchasing team's Excel analysis rebuilt as native reports, AR/EN.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Custom Invoice Fields<small>custom_invoice_fields · 18.0.2.0.0</small></div><div class="desc">Line number, barcode, price and total before tax on invoices and printed reports.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Vendor Edit Restriction<small>vendor_edit_restrict · 18.0.4.2.0</small></div><div class="desc">Everyone views vendors; only selected users edit.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Vendor Partner Ledger Button<small>vendor_partner_ledger_cybrosys · 18.0.1.0.0</small></div><div class="desc">Smart button opening the partner ledger pre-filtered for the vendor.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Accounting Kit, Dynamic Reports, Budgets<small>Cybrosys</small></div><div class="desc">Community-edition accounting stack, configured and bridged into custom reports.</div><span class="tag warn">integrated</span></div>
+      </div>
+
+      <div class="modgroup">
+        <header>Reporting &amp; sales <span>2 modules</span></header>
+        <div class="mod"><div class="name">Full Reports<small>sale_report_pro · 18.0.3.2.0</small></div><div class="desc">Profit &amp; loss with returns analysis, best/worst sellers, hourly sales, category trees, sales by channel, multi-sheet Excel workbook, scheduled emails.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Sales Target vs Achievement<small>sales_target_vs_achievement · 18.0.13.0.0</small></div><div class="desc">Extended with upsell/cross-sell tagging, employee KPI profiles, configurable bonus scheme, bonus simulator, seasonal targets.</div><span class="tag warn">extended</span></div>
+      </div>
+
+      <div class="modgroup">
+        <header>Platform &amp; APIs <span>4 modules</span></header>
+        <div class="mod"><div class="name">Product API<small>product_api · 18.0.1.4</small></div><div class="desc">Public HTTP endpoint returning price (tax-in/ex), tax rate and on-hand quantity per scanned product.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">Enterprise-style Home Screen<small>home-theme · 18.0.1.0.0</small></div><div class="desc">OWL app dashboard: app grid, drag-and-drop ordering saved per user, custom backgrounds.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">AI Chat<small>odoo_ai_chat · 18.0.1.2</small></div><div class="desc">In-app assistant.</div><span class="tag ok">authored</span></div>
+        <div class="mod"><div class="name">REST API<small>rest_api_odoo · Cybrosys</small></div><div class="desc">GET/POST/PUT/DELETE access for external systems.</div><span class="tag warn">integrated</span></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills" style="padding-top:0">
+    <div class="sec-head rv">
+      <div><div class="eyebrow">Skills</div><h2 style="margin-top:10px">Tools I reach for.</h2></div>
+    </div>
+    <div class="skills rv">
+      <div class="skill"><h3>languages</h3><ul><li>Python</li><li>JavaScript</li><li>C++</li><li>C#</li><li>SQL / PostgreSQL</li><li>HTML &amp; CSS</li><li>XML</li><li>Bash</li></ul></div>
+      <div class="skill"><h3>web &amp; back end</h3><ul><li>Responsive HTML/CSS</li><li>Canvas &amp; DOM APIs</li><li>REST APIs &amp; webhooks</li><li>Web scraping</li><li>Odoo 14 → 18 (ORM, OWL, QWeb)</li><li>Excel/CSV pipelines</li><li>Linux servers</li><li>Git</li></ul></div>
+      <div class="skill"><h3>games &amp; systems</h3><ul><li>C++ game-server debugging</li><li>Unity / C# bug fixing</li><li>Packet handling &amp; validation</li><li>Exploit patching</li><li>Game loops &amp; physics</li><li>Networking fundamentals</li><li>Security fundamentals</li></ul></div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" style="padding-top:0">
+    <div class="sec-head rv">
+      <div><div class="eyebrow">About</div><h2 style="margin-top:10px">Background.</h2></div>
+      <p>I like problems where the fix has to be small, safe and explainable — the kind where you read someone else's code before touching your own.</p>
+    </div>
+    <div class="timeline rv">
+      <div class="tl">
+        <div class="when">Golden Care</div>
+        <h3>ERP &amp; integrations developer</h3>
+        <p>Own the full custom Odoo 18 layer for a Riyadh cosmetics retail chain: e-commerce sync, POS, loyalty, inventory, reporting, audit.</p>
+      </div>
+      <div class="tl">
+        <div class="when">Sailor Online</div>
+        <h3>Server developer</h3>
+        <p>C++ gameserver fixes, exploit patching and live-ops support for an MMORPG private-server project with thousands of players.</p>
+      </div>
+      <div class="tl">
+        <div class="when">Old Skull Games</div>
+        <h3>Bug fixing, mobile titles</h3>
+        <p>Reproduced and fixed player-reported issues in Unity/C# mobile games for a French independent studio.</p>
+      </div>
+      <div class="tl">
+        <div class="when">Freelance · ongoing</div>
+        <h3>Web &amp; Python for individuals and small businesses</h3>
+        <p>Landing pages, storefronts, small tools and one-off fixes, mostly by referral.</p>
+      </div>
+      <div class="tl">
+        <div class="when">B.Sc. Computer Science</div>
+        <h3>Arab Open University</h3>
+        <p>Specialisation in cyber security and network engineering — which is why input validation, access control and audit trails show up so often in the work above.</p>
+      </div>
+      <div class="tl">
+        <div class="when">Cairo, Egypt · born 12 October 1997</div>
+        <h3>Seif Khaled Mohamed</h3>
+        <p>Working in Arabic and English. Available for web, Python and integration projects, and remote contracts across Egypt and the Gulf.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" style="padding-top:0">
+    <div class="contact rv">
+      <div>
+        <div class="eyebrow" style="color:#C9A3C0">Contact</div>
+        <h2 style="margin-top:10px">Have something broken, slow, or not built yet?</h2>
+        <p>Send the symptom, not the diagnosis. I'll tell you within a day whether it's a quick fix, a build, or something else entirely.</p>
+      </div>
+      <div class="links">
+        <a href="mailto:seifxat@gmail.com">seifxat@gmail.com <span>email</span></a>
+        <a href="tel:+201551300505">+20 155 130 0505 <span>phone</span></a>
+        <a href="https://wa.me/201551300505">wa.me/201551300505 <span>WhatsApp</span></a>
+        <a href="https://github.com/SeifKhaled1210" target="_blank" rel="noopener">github.com/SeifKhaled1210 <span>GitHub</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Seif Khaled Mohamed</span>
+    <span>Built by hand · no framework · v2.1.1 · <a href="https://github.com/SeifKhaled1210/cv" style="color:inherit">source</a></span>
+  </footer>
+</main>
+
+<script>
+(function(){
+  const lines = [
+    "<span class=k>class</span> <span class=n>Developer</span>:",
+    "    name     = <span class=s>'Seif Khaled Mohamed'</span>",
+    "    based_in = <span class=s>'Cairo, EG'</span>",
+    "    years    = <span class=n>4</span>",
+    "    stack    = [<span class=s>'python'</span>, <span class=s>'js'</span>, <span class=s>'c++'</span>, <span class=s>'sql'</span>]",
+    "    builds   = [<span class=s>'web apps'</span>, <span class=s>'landing pages'</span>,",
+    "                <span class=s>'integrations'</span>, <span class=s>'game fixes'</span>]",
+    "",
+    "    <span class=k>def</span> <span class=n>on_bug</span>(self, report):",
+    "        <span class=k>return</span> self.reproduce(report) \\",
+    "                   .isolate() \\",
+    "                   .patch(minimal=<span class=n>True</span>)  <span class=c># then ship</span>"
+  ];
+  const el = document.getElementById('manifest');
+  const html = lines.join('\n');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { el.innerHTML = html; return; }
+  const tokens = html.match(/<[^>]+>|[\s\S]/g);
+  let i = 0, out = '';
+  const cur = '<span class="cursor"></span>';
+  function step(){
+    if (i >= tokens.length){ el.innerHTML = out + cur; return; }
+    const t = tokens[i++]; out += t; el.innerHTML = out + cur;
+    setTimeout(step, t.startsWith('<') ? 0 : (t === '\n' ? 60 : 14));
+  }
+  step();
+})();
+(function(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.08});
+  document.querySelectorAll('.rv').forEach(n=>io.observe(n));
+})();
+</script>
+</body>
+</html>
