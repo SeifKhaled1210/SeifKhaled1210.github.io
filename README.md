@@ -17,7 +17,7 @@ Full-stack developer based in Cairo. Python back ends and ERP integrations, web 
 
 ## Clients & teams featured
 
-- **Golden Care** (Riyadh) — 30+ custom Odoo 18 modules: Salla ↔ Odoo sync, POS performance, loyalty, inventory, audit, reporting
+- **Golden Care** (Riyadh) — [goldencaresa.net](https://goldencaresa.net/) storefront and the Odoo 18 ERP behind it: 30+ custom modules: Salla ↔ Odoo sync, POS performance, loyalty, inventory, audit, reporting
 - **Sailor Online** — C++ gameserver fixes and exploit patching on a live MMORPG project
 - **Old Skull Games** (France) — bug fixing on Unity/C# mobile titles
 - Freelance web and Python work for individuals and small businesses

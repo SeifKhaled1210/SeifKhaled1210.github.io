@@ -229,6 +229,19 @@ footer{padding:28px 0 40px;font-family:var(--mono);font-size:12.5px;color:var(--
 .client.more{background:transparent;border-style:dashed;justify-content:center}
 @media(max-width:900px){.clients{grid-template-columns:1fr}}
 .fix pre .kw{color:#C9A3C0}
+.case .shot{margin:-26px -26px 0;border-bottom:1px solid var(--line);background:#EDF0ED;aspect-ratio:16/7;overflow:hidden;border-radius:var(--radius) var(--radius) 0 0}
+.case .shot img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+.case .shot a{display:block;height:100%}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px}
+.gallery figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.gallery figure.span2{grid-column:span 2}
+.gallery img{width:100%;display:block;border-bottom:1px solid var(--line)}
+.gallery figcaption{padding:14px 18px;font-size:14px;color:var(--ink-2);display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.gallery figcaption b{font-family:var(--mono);font-size:11.5px;color:var(--plum);white-space:nowrap}
+.linkrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.linkrow a{font-family:var(--mono);font-size:12.5px;padding:6px 11px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink-2);background:var(--surface)}
+.linkrow a:hover{border-color:var(--plum);color:var(--plum)}
+@media(max-width:800px){.gallery{grid-template-columns:1fr}.gallery figure.span2{grid-column:span 1}}
 details.modlist{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
 details.modlist>summary{cursor:pointer;list-style:none;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;font-weight:600}
 details.modlist>summary::-webkit-details-marker{display:none}
@@ -300,8 +313,9 @@ details.modlist[open]>summary{border-bottom:1px solid var(--line)}
         <div class="who">Retail · Riyadh, Saudi Arabia</div>
         <h3>Golden Care</h3>
         <div class="role">Lead ERP &amp; integrations developer</div>
-        <p>Cosmetics retail chain: multiple stores, a POS network and a Salla online shop on one Odoo 18 Community instance. I own the entire custom layer.</p>
-        <ul><li>30+ modules built or maintained</li><li>Two-way e-commerce sync for 12,700 SKUs</li><li>POS performance, loyalty, audit, reporting</li></ul>
+        <p>Cosmetics retail chain: multiple stores, a POS network and an online shop. I built both the customer-facing store and the back-office system it runs on.</p>
+        <ul><li>Online store: goldencaresa.net (Salla, AR/EN)</li><li>ERP: Odoo 18 Community, 30+ custom modules</li><li>Two-way sync for 12,700 SKUs, POS, loyalty, reporting</li></ul>
+        <div class="linkrow"><a href="https://goldencaresa.net/" target="_blank" rel="noopener">goldencaresa.net ↗</a><a href="https://odoo.goldencaresa.net/" target="_blank" rel="noopener">odoo.goldencaresa.net ↗</a></div>
         <a class="jump" href="#erp">See the ERP work →</a>
       </div>
       <div class="client">
@@ -363,7 +377,7 @@ details.modlist[open]>summary{border-bottom:1px solid var(--line)}
     <div class="band rv" style="margin-top:20px">
       <div class="card">
         <h3>Client web work</h3>
-        <p>Beyond concept pages: Golden Care's storefront and product-content pipelines for a 12,700-SKU online shop, web-side support for Sailor Online (account and launcher pages), a customer-facing self-order kiosk web app that talks to an ERP over RPC, and OWL/JavaScript components inside back-office systems — drag-and-drop dashboards, browser-side receipt printing, barcode-driven wizards.</p>
+        <p>Beyond concept pages: <a href="https://goldencaresa.net/" target="_blank" rel="noopener" style="font-weight:600;color:var(--plum)">goldencaresa.net</a> — Golden Care's bilingual Salla storefront, from theme setup and category structure to the product-content pipeline behind its 12,700 SKUs; web-side support for Sailor Online (account and launcher pages), a customer-facing self-order kiosk web app that talks to an ERP over RPC, and OWL/JavaScript components inside back-office systems — drag-and-drop dashboards, browser-side receipt printing, barcode-driven wizards.</p>
       </div>
       <div class="card">
         <h3>How I build pages</h3>
@@ -543,7 +557,7 @@ void Tick(float dt) {
         <div class="eyebrow">ERP & integrations</div>
         <h2 style="margin-top:10px">Back-office systems Golden Care runs on.</h2>
       </div>
-      <p>Golden Care is a cosmetics retail chain in Riyadh: multiple stores, a POS network and a Salla online shop on a single Odoo 18 Community instance. I built and maintain the entire custom layer. Versions are real; so were the problems.</p>
+      <p>Golden Care is a cosmetics retail chain in Riyadh: multiple stores, a POS network and a Salla online shop on a single Odoo 18 Community instance. I built and maintain the entire custom layer — the screens below are the live system. Versions are real; so were the problems.</p>
     </div>
 
     <div class="cases">
@@ -590,6 +604,7 @@ void Tick(float dt) {
       </article>
 
       <article class="case rv">
+        <div class="shot"><a href="assets/gc-cycle-count.jpg" target="_blank" rel="noopener"><img src="assets/gc-cycle-count.jpg" alt="Cycle Count dashboard — today's progress" loading="lazy"></a></div>
         <div class="top"><div><h3>Barcode cycle counting</h3><div class="module">inventory_cycle_count</div></div><span class="tag ver">18.0.12.20.0</span></div>
         <p>Daily shop-floor stock counts with Honeywell handheld scanners, straight into the ERP.</p>
         <ul>
@@ -600,8 +615,9 @@ void Tick(float dt) {
       </article>
 
       <article class="case rv">
+        <div class="shot"><a href="assets/gc-price-monitor.jpg" target="_blank" rel="noopener"><img src="assets/gc-price-monitor.jpg" alt="Price Monitor dashboard tracking 7,091 competitor products" loading="lazy"></a></div>
         <div class="top"><div><h3>Product price monitor</h3><div class="module">product_price_monitor</div></div><span class="tag ver">18.0.3.9.25</span></div>
-        <p>Paste any competitor product URL — Amazon, Noon, any store — and the system scrapes the price on a schedule via JSON-LD, meta tags or CSS selectors.</p>
+        <p>Paste any competitor product URL — Amazon, Noon, any store — and the system scrapes the price on a schedule via JSON-LD, meta tags or CSS selectors. Currently tracking 7,000+ products across a dozen Saudi retailers.</p>
         <ul>
           <li>Full price history with % change, email and in-app alerts</li>
           <li>Cross-site comparison groups, bulk CSV/Excel import, multi-tab Excel reports</li>
@@ -609,6 +625,12 @@ void Tick(float dt) {
         <div class="result"><b>Any website</b> becomes a data source without writing a new scraper.</div>
       </article>
 
+    </div>
+
+    <div class="gallery rv">
+      <figure class="span2"><a href="assets/gc-full-reports.jpg" target="_blank" rel="noopener"><img src="assets/gc-full-reports.jpg" alt="Full Reports app — one-click sales, profit, loss and vendor reports with email schedules" loading="lazy"></a><figcaption><span>Full Reports — a standalone reporting app: profit &amp; returns, loss, best/worst products, category tree, hourly sales, salesperson performance, a 7-sheet vendor workbook, and an all-in-one Excel export. Reports can be scheduled to email daily, weekly or monthly.</span><b>sale_report_pro</b></figcaption></figure>
+      <figure><a href="assets/gc-sales-target.jpg" target="_blank" rel="noopener"><img src="assets/gc-sales-target.jpg" alt="Sales target KPI cards per employee" loading="lazy"></a><figcaption><span>Sales Target vs Achievement — per-employee interactive KPI cards: target, pace, AOV, receipts, sales share and team totals, with a bonus scheme matched to company policy.</span><b>sales_target</b></figcaption></figure>
+      <figure><a href="assets/gc-home.jpg" target="_blank" rel="noopener"><img src="assets/gc-home.jpg" alt="Odoo home screen showing the custom apps" loading="lazy"></a><figcaption><span>The home screen after install: Salla Connector, Price Monitor, Classification Tools, Product Export, Full Reports, Expiry Tracking, Audit, Products Data and Sales Target are all custom apps.</span><b>home-theme</b></figcaption></figure>
     </div>
 
     <details class="modlist rv" style="margin-top:20px">
@@ -737,7 +759,7 @@ void Tick(float dt) {
 
   <footer>
     <span>© 2026 Seif Khaled Mohamed</span>
-    <span>Built by hand · no framework · v2.1.1 · <a href="https://github.com/SeifKhaled1210/cv" style="color:inherit">source</a></span>
+    <span>Built by hand · no framework · v2.2.0 · <a href="https://github.com/SeifKhaled1210/cv" style="color:inherit">source</a></span>
   </footer>
 </main>
 
